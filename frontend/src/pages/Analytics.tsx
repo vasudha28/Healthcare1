@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import Navigation from "@/components/Navigation";
 import { TrendingUp, Users, Activity, Calendar } from "lucide-react";
 import { toast } from "sonner";
+import { API_ENDPOINTS } from '../config';
 
 interface Patient {
   id: string;
@@ -31,7 +32,7 @@ const Analytics = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/patients/');
+        const response = await fetch(API_ENDPOINTS.PATIENTS.BASE);
         const data = await response.json();
         
         if (response.ok) {

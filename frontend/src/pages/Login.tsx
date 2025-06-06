@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Heart, Lock, User, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { API_ENDPOINTS } from '../config';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,11 +54,12 @@ const Login = () => {
           return;
         }
 
-        const response = await fetch('http://localhost:8000/api/auth/register', {
+        const response = await fetch(API_ENDPOINTS.AUTH.REGISTER, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'omit',
           body: JSON.stringify({
             username: formData.username,
             email: formData.email,
@@ -77,11 +79,12 @@ const Login = () => {
         setIsRegistering(false);
       } else {
         // Login
-        const response = await fetch('http://localhost:8000/api/auth/token', {
+        const response = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
+          credentials: 'omit',
           body: new URLSearchParams({
             username: formData.email,
             password: formData.password,

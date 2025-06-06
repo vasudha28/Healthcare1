@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Eye, Edit } from "lucide-react";
 import { toast } from "sonner";
+import { API_ENDPOINTS } from '../config';
 
 interface Patient {
   id: string;
@@ -22,7 +23,7 @@ const RecentPatients = () => {
   useEffect(() => {
     const fetchRecentPatients = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/patients/?limit=5');
+        const response = await fetch(`${API_ENDPOINTS.PATIENTS.BASE}/?limit=5`);
         const data = await response.json();
         
         if (response.ok) {

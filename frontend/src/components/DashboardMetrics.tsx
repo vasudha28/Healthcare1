@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Calendar, Activity, TrendingUp, UserCog, Users2 } from "lucide-react";
 import { toast } from "sonner";
+import { API_ENDPOINTS } from '../config';
 
 interface Patient {
   id: string;
@@ -64,7 +65,7 @@ const DashboardMetrics = () => {
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/patients/');
+        const response = await fetch(API_ENDPOINTS.PATIENTS.BASE);
         const data = await response.json();
         
         if (response.ok) {

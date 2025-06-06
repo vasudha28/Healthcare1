@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Plus, Save, ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { toast } from "sonner";
+import { API_ENDPOINTS } from '../config';
 
 const AddPatient = () => {
   const navigate = useNavigate();
@@ -101,11 +102,11 @@ const AddPatient = () => {
         appointments: appointments.filter(a => a.date)
       };
 
-      let url = 'http://localhost:8000/api/patients/';
+      let url = API_ENDPOINTS.PATIENTS.BASE;
       let method = 'POST';
 
       if (isEditing && existingPatient?.id) {
-        url = `http://localhost:8000/api/patients/${existingPatient.id}/`;
+        url = API_ENDPOINTS.PATIENTS.BY_ID(existingPatient.id);
         method = 'PUT';
       }
 

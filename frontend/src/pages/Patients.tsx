@@ -23,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
+import { API_ENDPOINTS } from '../config';
 
 interface Patient {
   id: string;
@@ -67,7 +68,7 @@ const Patients = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:8000/api/patients/?page=${currentPage}&search=${searchTerm}&gender=${genderFilter}`
+        `${API_ENDPOINTS.PATIENTS.BASE}/?page=${currentPage}&search=${searchTerm}&gender=${genderFilter}`
       );
       const data = await response.json();
       if (response.ok) {
@@ -94,7 +95,7 @@ const Patients = () => {
       try {
         console.log('Attempting to delete patient with ID:', patientId);
         
-        const response = await fetch(`http://localhost:8000/api/patients/${patientId}`, {
+        const response = await fetch(API_ENDPOINTS.PATIENTS.BY_ID(patientId), {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'

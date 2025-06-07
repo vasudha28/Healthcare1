@@ -33,7 +33,7 @@ type CarouselContextProps = {
   plugins?: CarouselPlugin
 }
 
-const CarouselContext = createContext<CarouselContextProps>({
+const CarouselContext = React.createContext<CarouselContextProps>({
   carouselRef: null as any,
   api: null as any,
   opts: undefined,

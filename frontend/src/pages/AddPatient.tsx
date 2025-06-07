@@ -30,6 +30,8 @@ const AddPatient = () => {
     notes: ""
   });
 
+  const [phoneError, setPhoneError] = useState("");
+
   const [prescriptions, setPrescriptions] = useState([
     { date: "", medication: "", dosage: "", notes: "" }
   ]);
@@ -63,11 +65,40 @@ const AddPatient = () => {
     }
   }, [isEditing, existingPatient]);
 
+  const validatePhoneNumber = (phone: string) => {
+    // Check if the number has 10 digits
+    if (phone.length !== 10) {
+      setPhoneError("Phone number must have 10 digits");
+      return false;
+    }
+
+    // Check if the number starts with a valid digit (1-9)
+    if (!/^[1-9]/.test(phone)) {
+      setPhoneError("Phone number must start with a digit 1-9");
+      return false;
+    }
+
+    setPhoneError("");
+    return true;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    if (name === 'phone') {
+      // Only allow digits
+      const digitsOnly = value.replace(/\D/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: digitsOnly
+      }));
+      validatePhoneNumber(digitsOnly);
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleGenderChange = (value: string) => {
@@ -91,6 +122,12 @@ const AddPatient = () => {
     // Basic validation
     if (!formData.name || !formData.age || !formData.gender || !formData.phone) {
       toast.error("Please fill in all required fields");
+      return;
+    }
+
+    // Validate phone number before submission
+    if (!validatePhoneNumber(formData.phone)) {
+      toast.error("Please enter a valid phone number");
       return;
     }
 
@@ -226,9 +263,13 @@ const AddPatient = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="mt-1"
-                  placeholder="(555) 123-4567"
+                  className={`mt-1 ${phoneError ? 'border-red-500' : ''}`}
+                  placeholder="Enter 10 digit number"
+                  maxLength={10}
                 />
+                {phoneError && (
+                  <p className="text-sm text-red-500 mt-1">{phoneError}</p>
+                )}
               </div>
 
               <div>

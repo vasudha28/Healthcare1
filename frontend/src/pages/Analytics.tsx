@@ -210,7 +210,7 @@ const Analytics = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <Navigation />
       
-      <main className="max-w-7xl mx-auto p-6">
+      <main className="w-full p-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics Dashboard</h1>
           <p className="text-gray-600">Healthcare insights and patient statistics</p>

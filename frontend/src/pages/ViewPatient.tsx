@@ -60,7 +60,7 @@ const ViewPatient = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <Navigation />
       
-      <main className="max-w-4xl mx-auto p-6">
+      <main className="w-full p-6">
         <div className="flex items-center space-x-4 mb-8">
           <Button 
             variant="outline" 

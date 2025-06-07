@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       port: 8080,
+      headers: {
+        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://healthcare1-h2mi.onrender.com;"
+      }
     },
     build: {
       sourcemap: mode === 'development',

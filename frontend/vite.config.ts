@@ -16,13 +16,20 @@ export default defineConfig(({ mode }) => {
       sourcemap: mode === 'development',
       outDir: 'dist',
       assetsDir: 'assets',
-      minify: 'terser',
+      minify: 'esbuild',
       rollupOptions: {
         output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'ui-vendor': ['@radix-ui/react-*'],
-          },
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              if (id.includes('@radix-ui')) {
+                return 'radix-vendor';
+              }
+              return 'vendor';
+            }
+          }
         },
       },
     },

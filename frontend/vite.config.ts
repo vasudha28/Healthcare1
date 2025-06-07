@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist',
       assetsDir: 'assets',
       minify: 'esbuild',
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks: (id) => {
@@ -29,7 +30,13 @@ export default defineConfig(({ mode }) => {
               }
               return 'vendor';
             }
-          }
+          },
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name === 'style.css') return 'assets/[name][extname]';
+            return 'assets/[name]-[hash][extname]';
+          },
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js',
         },
       },
     },
@@ -43,6 +50,10 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       __APP_ENV__: JSON.stringify(env.VITE_ENV),
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom'],
+      exclude: ['@radix-ui/react-icons'],
     },
   };
 });

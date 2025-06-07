@@ -20,7 +20,9 @@ type ChartContextProps = {
   config: ChartConfig
 }
 
-const ChartContext = React.createContext<ChartContextProps | null>(null)
+const ChartContext = React.createContext<ChartContextProps>({
+  config: {}
+})
 
 function useChart() {
   const context = React.useContext(ChartContext)

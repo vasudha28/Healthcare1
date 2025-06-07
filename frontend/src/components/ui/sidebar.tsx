@@ -34,7 +34,15 @@ type SidebarContext = {
   toggleSidebar: () => void
 }
 
-const SidebarContext = React.createContext<SidebarContext | null>(null)
+const SidebarContext = React.createContext<SidebarContext>({
+  state: "expanded",
+  open: true,
+  setOpen: () => {},
+  openMobile: false,
+  setOpenMobile: () => {},
+  isMobile: false,
+  toggleSidebar: () => {}
+})
 
 function useSidebar() {
   const context = React.useContext(SidebarContext)

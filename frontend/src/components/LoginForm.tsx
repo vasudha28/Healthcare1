@@ -23,7 +23,7 @@ export function LoginForm() {
       formDataObj.append('username', formData.username);
       formDataObj.append('password', formData.password);
 
-      const response = await fetch('http://localhost:8000/api/auth/token', {
+      const response = await fetch('https://healthcare1-h2mi.onrender.com/api/auth/token', {
         method: 'POST',
         body: formDataObj,
       });

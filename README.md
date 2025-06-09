@@ -2,6 +2,9 @@
 
 > A secure, scalable, and user-friendly patient management solution for healthcare professionals
 
+> ![image](https://github.com/user-attachments/assets/848421cf-ded1-4c56-93cf-c184965b4b35)
+
+
 [![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat&logo=react)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-47A248?style=flat&logo=mongodb)](https://www.mongodb.com/)

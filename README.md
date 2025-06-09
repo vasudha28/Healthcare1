@@ -2,7 +2,8 @@
 
 > A secure, scalable, and user-friendly patient management solution for healthcare professionals
 
-> ![image](https://github.com/user-attachments/assets/848421cf-ded1-4c56-93cf-c184965b4b35)
+![screencapture-healthcare1-puce-vercel-app-2025-06-09-20_47_42](https://github.com/user-attachments/assets/6ebbc5e0-7724-4750-b0f2-8ff0591a228d)
+
 
 
 [![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat&logo=react)](https://reactjs.org/)
